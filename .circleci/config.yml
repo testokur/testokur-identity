@@ -1,0 +1,103 @@
+version: 2.1
+orbs:
+  codecov: codecov/codecov@1.0.5
+defaults: &defaults
+  working_directory: ~/repo
+  machine: true
+jobs:
+  test:
+    <<: *defaults
+    steps:
+      - checkout
+      - run:
+          name: Install Docker Compose
+          command: |
+            set -x
+            curl -L https://github.com/docker/compose/releases/download/1.24.1/docker-compose-`uname -s`-`uname -m` > ~/docker-compose
+            chmod +x ~/docker-compose
+            sudo mv ~/docker-compose /usr/local/bin/docker-compose
+      - run:
+          name: Run Tests
+          command: |
+            mkdir ~/repo/coverage
+            docker-compose -f docker-compose.tests.yml up --build --abort-on-container-exit
+      - persist_to_workspace:
+          root: ~/repo
+          paths:
+            - coverage/*  
+  build:
+    <<: *defaults
+    steps:
+      - checkout
+      - run:
+          name: Install Docker Compose
+          command: |
+            set -x
+            curl -L https://github.com/docker/compose/releases/download/1.24.1/docker-compose-`uname -s`-`uname -m` > ~/docker-compose
+            chmod +x ~/docker-compose
+            sudo mv ~/docker-compose /usr/local/bin/docker-compose
+      - run:
+          name: Build Image
+          command: |
+            echo "SHA1 :  $CIRCLE_SHA1 "
+            docker-compose build --build-arg COMMIT=$CIRCLE_SHA1 identity
+      - run:
+          name: Publish Docker Image to Docker Hub
+          command: |
+            echo "$DOCKERHUB_PASS" | docker login -u "$DOCKERHUB_USERNAME" --password-stdin
+                IMAGE_TAG="0.0.${CIRCLE_BUILD_NUM}"
+                docker tag testokur-identity:latest nazmialtun/testokur-identity:$IMAGE_TAG
+                docker tag testokur-identity:latest nazmialtun/testokur-identity:latest
+                docker push nazmialtun/testokur-identity:latest
+                docker push nazmialtun/testokur-identity:$IMAGE_TAG
+      - persist_to_workspace:
+          root: .
+          paths:
+            - deploy/*
+    deploy-webapi-qa:
+    <<: *defaults
+    steps:
+      - attach_workspace:
+          at: ~/repo
+      - run:
+          name: Run container
+          command: |
+            ssh  $SSH_USERNAME@$QA_SERVER 'bash -s' < deploy/webapi-qa.sh > /dev/null
+  deploy:
+    <<: *defaults
+    steps:
+      - attach_workspace:
+          at: ~/repo
+      - run:
+          name: Deploy
+          command: |
+            ssh  $SSH_USERNAME@$PROD_SERVER 'bash -s' < deploy.sh > /dev/null  
+  clean-up:
+    <<: *defaults
+    steps:
+      - run:
+          name: Prune docker images/containers
+          command: |
+            ssh  $SSH_USERNAME@$PROD_SERVER 'echo Y | docker system prune'  
+workflows:
+  version: 2  
+  build-and-test:
+    jobs:
+      - test
+      - build        
+  deploy:
+    jobs:
+      - deploy:
+          filters:
+            tags:
+              only: /^v.*/
+            branches:
+              ignore: /.*/
+      - clean-up:
+          requires:
+            - deploy
+          filters:
+            tags:
+              only: /^v.*/
+            branches:
+              ignore: /.*/
