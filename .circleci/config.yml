@@ -54,15 +54,6 @@ jobs:
           root: .
           paths:
             - deploy/*
-    deploy-webapi-qa:
-    <<: *defaults
-    steps:
-      - attach_workspace:
-          at: ~/repo
-      - run:
-          name: Run container
-          command: |
-            ssh  $SSH_USERNAME@$QA_SERVER 'bash -s' < deploy/webapi-qa.sh > /dev/null
   deploy:
     <<: *defaults
     steps:
