@@ -21,10 +21,6 @@ jobs:
           command: |
             mkdir ~/repo/coverage
             docker-compose -f docker-compose.tests.yml up --build --abort-on-container-exit
-      - persist_to_workspace:
-          root: ~/repo
-          paths:
-            - coverage/*  
   build:
     <<: *defaults
     steps:
