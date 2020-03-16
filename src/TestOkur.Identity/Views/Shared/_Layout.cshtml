@@ -1,0 +1,28 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>TestOkur</title>
+	@await Html.PartialAsync("_Favicons")
+    <link rel="stylesheet" href="~/dist/app.css" asp-append-version="true" />
+</head>
+<body class="theme-blue-grey">
+    <nav class="navbar">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a href="#" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false"></a>
+                <a class="navbar-brand" href="~/">
+                    <img src="~/dist/icon.png" class="icon-banner">
+                    TestOkur
+                </a>
+            </div>
+        </div>
+    </nav>
+    <div class="container">
+        @RenderBody()
+    </div>
+    <script src="~/dist/index.js" asp-append-version="true"></script>
+</body>
+</html>

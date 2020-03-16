@@ -1,0 +1,26 @@
+version: '3.6'
+
+services:
+  identity:
+    image: testokur-identity:latest
+    build:
+      context: .
+      dockerfile: src/TestOkur.Identity/Dockerfile
+      target: final
+    container_name: identity
+    ports:
+      - "9151:80"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ConnectionStrings__Postgres=Server=postgres;Database=identity;User Id=user;Password=password
+    depends_on:
+      - postgres  
+  postgres:
+    restart: always
+    image: nazmialtun/postgres-tr
+    ports:
+      - "6433:5432"
+    environment:    
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_USER=user
+      - POSTGRES_DB=identity

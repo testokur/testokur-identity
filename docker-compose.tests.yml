@@ -1,0 +1,30 @@
+version: '3.6'
+
+services:  
+  postgres:
+    image: nazmialtun/postgres-tr
+    environment:    
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_USER=user
+      - POSTGRES_DB=identity
+  test:
+    image: testokur-identity-test
+    build:
+      context: .
+      dockerfile: src/TestOkur.Identity/Dockerfile
+      target: integrationtest
+    entrypoint:
+        - dotnet
+        - test
+        - --logger
+        - trx;LogFileName=/tests/testokur-identity-test-results.xml
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ConnectionStrings__Postgres=Server=postgres;Database=identity;User Id=user;Password=password
+      - Logging__Console__LogLevel__Default=Information
+    depends_on:
+      - postgres
+    volumes:
+      - test_output:/tests
+volumes:
+  test_output:

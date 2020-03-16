@@ -1,0 +1,78 @@
+﻿/* roboto-regular - latin_cyrillic-ext */
+@font-face {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    src: url('../fonts/roboto-v18-latin_cyrillic-ext-regular.eot'); /* IE9 Compat Modes */
+    src: local('Roboto'), local('Roboto-Regular'), url('../fonts/roboto-v18-latin_cyrillic-ext-regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+    url('../fonts/roboto-v18-latin_cyrillic-ext-regular.woff2') format('woff2'), /* Super Modern Browsers */
+    url('../fonts/roboto-v18-latin_cyrillic-ext-regular.woff') format('woff'), /* Modern Browsers */
+    url('../fonts/roboto-v18-latin_cyrillic-ext-regular.ttf') format('truetype'), /* Safari, Android, iOS */
+    url('../fonts/roboto-v18-latin_cyrillic-ext-regular.svg#Roboto') format('svg'); /* Legacy iOS */
+}
+
+.icon-banner {
+    display: inline-block !important;
+    height: 30px;
+    margin-top: -5px;
+}
+
+.login-page {
+    background-color: transparent !important;
+}
+
+    .login-page .login-box {
+        margin-top: 70px;
+    }
+
+        .login-page .login-box .logo {
+            text-align: center;
+        }
+
+.page {
+    margin-top: 70px;
+}
+
+.dropdown-menu ul.menu {
+    color: transparent;
+}
+
+    .dropdown-menu ul.menu li > a > span {
+        margin-left: 10px;
+        margin-top: 2px;
+        float: left;
+    }
+
+.navbar-nav > li > .dropdown-menu {
+    margin-left: 50px;
+}
+
+.slimScrollDiv {
+    position: relative;
+    overflow: hidden;
+    width: auto;
+    height: 541px;
+}
+
+.demo-choose-skin {
+    overflow: hidden;
+    width: auto;
+    height: 541px;
+}
+
+li.language-selector > a > span {
+    margin-left: 5px;
+    margin-top: 3px;
+}
+
+div.index-content {
+    margin-top: 70px;
+}
+
+    div.index-content h1 {
+        text-align: center;
+    }
+
+i.md-success {
+    color: #2b982b
+}
