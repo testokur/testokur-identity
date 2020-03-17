@@ -1,6 +1,7 @@
-## QA
-[![Build Status](https://dev.azure.com/nazmialtun-testokur/testokur.identity/_apis/build/status/testokur.identity-Docker%20container-CI?branchName=master)](https://dev.azure.com/nazmialtun-testokur/testokur.identity/_build/latest?definitionId=4&branchName=master)
-
-## PROD
-[![Build Status](https://dev.azure.com/nazmialtun-testokur/testokur.identity/_apis/build/status/testokur.identity-PROD?branchName=master)](https://dev.azure.com/nazmialtun-testokur/testokur.identity/_build/latest?definitionId=6&branchName=master)
 # TestOkur Identity
+
+[![CircleCI](https://circleci.com/gh/testokur/testokur-identity.svg?style=svg)](https://circleci.com/gh/testokur/testokur-identity)
+
+[![CodeFactor](https://www.codefactor.io/repository/github/testokur/testokur-identity/badge)](https://www.codefactor.io/repository/github/testokur/testokur-identity)
+
+[![BCH compliance](https://bettercodehub.com/edge/badge/testokur/testokur-identity?branch=master)](https://bettercodehub.com/)
