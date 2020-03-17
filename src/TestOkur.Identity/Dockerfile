@@ -21,6 +21,7 @@ ENV NODE_ENV production
 ENV NODE_PATH ./dist
 WORKDIR /opt/app
 COPY src/TestOkur.Identity/package.json  ./
+COPY src/TestOkur.Identity/yarn.lock  ./
 COPY src/TestOkur.Identity/webpack.common.js  ./
 COPY src/TestOkur.Identity/webpack.prod.js  ./
 COPY src/TestOkur.Identity/wwwroot  ./wwwroot
