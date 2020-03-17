@@ -46,15 +46,10 @@ jobs:
                 docker tag testokur-identity:latest nazmialtun/testokur-identity:latest
                 docker push nazmialtun/testokur-identity:latest
                 docker push nazmialtun/testokur-identity:$IMAGE_TAG
-      - persist_to_workspace:
-          root: .
-          paths:
-            - deploy/*
   deploy:
     <<: *defaults
     steps:
-      - attach_workspace:
-          at: ~/repo
+      - checkout
       - run:
           name: Deploy
           command: |
