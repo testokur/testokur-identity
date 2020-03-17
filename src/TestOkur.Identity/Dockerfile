@@ -7,7 +7,7 @@ LABEL Commit=${COMMIT}
 FROM mcr.microsoft.com/dotnet/core/sdk:3.1 as build
 WORKDIR /src
 COPY . .
-RUN dotnet build "./src/TestOkur.Identity/TestOkur.Identity.csproj" -c Release --no-restore -o /app
+RUN dotnet build "./src/TestOkur.Identity/TestOkur.Identity.csproj" -c Release -o /app
 RUN dotnet tool install --global dotnet-trace
 RUN dotnet tool install --global dotnet-dump
 RUN dotnet tool install --global dotnet-counters
