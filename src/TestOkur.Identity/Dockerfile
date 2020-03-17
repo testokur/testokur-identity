@@ -31,6 +31,7 @@ RUN yarn install --network-timeout 1000000
 RUN yarn build-prod
 
 FROM build AS publish
+WORKDIR /src
 RUN dotnet publish "./src/TestOkur.Identity/TestOkur.Identity.csproj" --no-restore -c Release -o /app
 RUN rm -rf /app/wwwroot
 COPY --from=ui-build /opt/app/wwwroot/dist /app/wwwroot/dist
