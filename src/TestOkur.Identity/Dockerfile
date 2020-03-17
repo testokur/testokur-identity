@@ -6,12 +6,6 @@ LABEL Commit=${COMMIT}
 
 FROM mcr.microsoft.com/dotnet/core/sdk:3.1 as build
 WORKDIR /src
-COPY ./*.sln ./
-COPY src/*/*.csproj ./  
-RUN for file in $(ls *.csproj); do mkdir -p src/${file%.*}/ && mv $file src/${file%.*}/; done
-COPY tests/*/*.csproj ./  
-RUN for file in $(ls *.csproj); do mkdir -p tests/${file%.*}/ && mv $file tests/${file%.*}/; done
-RUN dotnet restore
 COPY . .
 RUN dotnet build "./src/TestOkur.Identity/TestOkur.Identity.csproj" -c Release --no-restore -o /app
 RUN dotnet tool install --global dotnet-trace
