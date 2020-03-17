@@ -58,7 +58,7 @@ jobs:
       - run:
           name: Deploy
           command: |
-            ssh  $SSH_USERNAME@$PROD_SERVER 'bash -s' < deploy.sh > /dev/null  
+            ssh  $SSH_USERNAME@$PROD_SERVER 'bash -s' < deploy/prod.sh > /dev/null  
   clean-up:
     <<: *defaults
     steps:
