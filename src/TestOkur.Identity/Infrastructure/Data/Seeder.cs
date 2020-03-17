@@ -48,6 +48,11 @@
             UserManager<ApplicationUser> userManager,
             IEnumerable<AdminUserInfo> adminUsers)
         {
+            if (adminUsers == null)
+            {
+                return;
+            }
+
             foreach (var user in adminUsers)
             {
                 await CreateAdminUserIfNotExistsAsync(userManager, user);
