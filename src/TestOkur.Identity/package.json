@@ -20,7 +20,7 @@
 		"css-loader": "^0.28.10",
 		"extract-text-webpack-plugin": "^4.0.0-beta.0",
 		"file-loader": "^1.1.11",
-		"jquery": "^2.2.4",
+		"jquery": "^3.4.0",
 		"jquery-validation": "^1.17.0",
 		"material-design-icons": "^3.0.1",
 		"node-waves": "^0.7.6",
