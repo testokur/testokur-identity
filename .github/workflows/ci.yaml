@@ -10,13 +10,14 @@ jobs:
       DOTNET_CLI_TELEMETRY_OPTOUT: 1
     steps:
       - name: Checkout
-      uses: actions/checkout@v1
+        uses: actions/checkout@v1
       - name: Disable DotNet First Usage Messsage
-      run: touch "$HOME/.dotnet/$(dotnet --version).dotnetFirstUseSentinel"
+        run: touch "$HOME/.dotnet/$(dotnet --version).dotnetFirstUseSentinel"
       - name: Start postgres 
-      run: |
-        docker run -d -e POSTGRES_PASSWORD=password -e POSTGRES_USER=user -e POSTGRES_DB=identity nazmialtun/postgres-tr
+        run: |
+          docker run -d -e POSTGRES_PASSWORD=password -e POSTGRES_USER=user -e POSTGRES_DB=identity -p 6433:6433 nazmialtun/postgres-tr
       - name: Run Tests
-      run: |
-        dotnet test -p:CollectCoverage=true -p:CoverletOutputFormat=opencover -p:CoverletOutput=../../coverage.xml
+        run: |
+          dotnet test -p:CollectCoverage=true -p:CoverletOutputFormat=opencover -p:CoverletOutput=../../coverage.xml
+  
   
