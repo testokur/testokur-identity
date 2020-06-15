@@ -25,4 +25,4 @@ jobs:
             --network=testokur \
             --network-alias=identity \
             nazmialtun/testokur-identity:latest
-            'echo Y | docker system prune'
+            echo Y | docker system prune
