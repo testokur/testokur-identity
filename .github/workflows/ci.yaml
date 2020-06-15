@@ -29,4 +29,20 @@ jobs:
       - name: Build
         run: |
           docker build -t nazmialtun/testokur-identity:${github.run_number} -t nazmialtun/testokur-identity:latest -f src/TestOkur.Identity/Dockerfile .
-  
+      - name: Login to DockerHub Registry
+        run: echo ${{ secrets.DOCKERHUB_PASSWORD }} | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin
+      - name: Push Docker Images to Registry
+        run: |
+          docker push nazmialtun/testokur-identity:latest
+          docker push nazmialtun/testokur-identity:${github.run_number}
+  deploy:
+    name: Deploy
+    if: {{ github.ref == 'ref/head/v*' }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v1
+      - name: Deploy
+        run: ssh  ${{ secrets.SSH_USERNAME }}@${{ secrets.PROD_SERVER }} 'bash -s' < deploy/prod.sh > /dev/null
+      - name: Cleanup
+        run: ssh  ${{ secrets.SSH_USERNAME }}@${{ secrets.PROD_SERVER }} 'echo Y | docker system prune'  
