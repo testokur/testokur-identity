@@ -6,7 +6,6 @@ on:
 jobs:
   deploy:
     name: Deploy
-    if: {{ github.ref == 'ref/head/v*' }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout

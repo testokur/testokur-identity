@@ -1,7 +1,8 @@
 name: CI
 on:
-  - push
-
+  push:
+    tags-ignore:
+      - v.* 
 jobs:
   tests:
     name: Tests
