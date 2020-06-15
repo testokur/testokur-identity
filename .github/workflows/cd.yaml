@@ -8,8 +8,6 @@ jobs:
     name: Deploy
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v1
       - name: executing remote ssh commands using password
         uses: appleboy/ssh-action@master
         with:
