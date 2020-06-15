@@ -1,0 +1,18 @@
+name: CD
+on:
+  push:
+    tags:        
+      - v*
+
+jobs:
+  deploy:
+    name: Deploy
+    if: {{ github.ref == 'ref/head/v*' }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v1
+      - name: Deploy
+        run: ssh  ${{ secrets.SSH_USERNAME }}@${{ secrets.PROD_SERVER }} 'bash -s' < deploy/prod.sh > /dev/null
+      - name: Cleanup
+        run: ssh  ${{ secrets.SSH_USERNAME }}@${{ secrets.PROD_SERVER }} 'echo Y | docker system prune'  
