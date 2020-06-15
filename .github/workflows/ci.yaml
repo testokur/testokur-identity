@@ -15,7 +15,7 @@ jobs:
         run: touch "$HOME/.dotnet/$(dotnet --version).dotnetFirstUseSentinel"
       - name: Start postgres 
         run: |
-          docker run -d -e POSTGRES_PASSWORD=password -e POSTGRES_USER=user -e POSTGRES_DB=identity -p 6433:6433 nazmialtun/postgres-tr
+          docker run -d -e POSTGRES_PASSWORD=password -e POSTGRES_USER=user -e POSTGRES_DB=identity -p 6433:5432 nazmialtun/postgres-tr
       - name: Run Tests
         run: |
           dotnet test -p:CollectCoverage=true -p:CoverletOutputFormat=opencover -p:CoverletOutput=../../coverage.xml
