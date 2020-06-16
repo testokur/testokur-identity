@@ -30,6 +30,8 @@ jobs:
         run: dotnet test -p:CollectCoverage=true -p:CoverletOutputFormat=opencover -p:CoverletOutput=../../coverage/integration.xml
       - name: End sonar scanning
         run: dotnet-sonarscanner end /d:sonar.login=${{secrets.SONAR_TOKEN}}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   docker:
     needs: [tests]
     name: Build docker image
