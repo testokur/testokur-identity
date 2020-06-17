@@ -15,9 +15,6 @@ RUN dotnet tool install --global dotnet-sos
 RUN dotnet tool install --global dotnet-gcdump
 ENV PATH="/root/.dotnet/tools:${PATH}"
 
-FROM build as integrationtest
-WORKDIR /src/tests/Integration.Tests
-
 FROM node:current-alpine AS ui-build
 ENV NODE_ENV production
 ENV NODE_PATH ./dist
