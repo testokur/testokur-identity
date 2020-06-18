@@ -6,7 +6,6 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Docker", "Docker", "{C189AED5-95F8-486D-8132-7456B62F950E}"
 	ProjectSection(SolutionItems) = preProject
 		.dockerignore = .dockerignore
-		docker-compose.tests.yml = docker-compose.tests.yml
 		docker-compose.yml = docker-compose.yml
 	EndProjectSection
 EndProject

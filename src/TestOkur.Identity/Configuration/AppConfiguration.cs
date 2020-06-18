@@ -9,5 +9,7 @@
         public string CertificatePassword { get; set; }
 
         public IEnumerable<AdminUserInfo> AdminUsers { get; set; }
+
+        public string Key { get; set; }
     }
 }

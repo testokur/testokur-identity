@@ -25,5 +25,13 @@
             response = await client.GetAsync("metrics-core");
             response.StatusCode.Should().Be(HttpStatusCode.OK);
         }
+
+        [Fact]
+        public async Task Diagnostic_Should_Return_Result()
+        {
+            var client = _webbApplicationFactory.CreateClient();
+            var response = await client.GetAsync("api/diagnostic?key=dummy-key");
+            response.IsSuccessStatusCode.Should().BeTrue();
+        }
     }
 }
