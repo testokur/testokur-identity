@@ -10,7 +10,7 @@
     using System.Threading.Tasks;
     using TestOkur.Identity.Configuration;
 
-    public class Seeder
+    internal static class Seeder
     {
         public static async Task SeedAsync(IServiceProvider serviceProvider)
         {

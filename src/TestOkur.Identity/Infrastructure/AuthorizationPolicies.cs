@@ -1,6 +1,6 @@
 ﻿namespace TestOkur.Identity.Infrastructure
 {
-    public class AuthorizationPolicies
+    internal static class AuthorizationPolicies
     {
         public const string Private = "Private";
 

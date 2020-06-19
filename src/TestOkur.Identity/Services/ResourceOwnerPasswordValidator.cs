@@ -92,7 +92,7 @@
                 return;
             }
 
-            if (user.LoginDevices.Count() + 1 > user.MaxAllowedDeviceCount)
+            if (user.LoginDevices.Count + 1 > user.MaxAllowedDeviceCount)
             {
                 await RecordActivityAsync(dbContext, ActivityLogType.InvalidLoginDeviceId, user);
                 context.Result = new GrantValidationResult(

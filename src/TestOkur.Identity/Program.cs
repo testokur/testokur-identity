@@ -6,10 +6,12 @@
     using Prometheus.DotNetRuntime;
     using Serilog;
     using System;
+    using System.Diagnostics.CodeAnalysis;
     using System.Threading.Tasks;
     using TestOkur.Identity.Infrastructure.Data;
     using TestOkur.Infrastructure.Mvc.Extensions;
 
+    [ExcludeFromCodeCoverage]
     public class Program
     {
         public static async Task Main(string[] args)
