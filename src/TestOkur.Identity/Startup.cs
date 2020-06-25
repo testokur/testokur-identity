@@ -184,6 +184,7 @@
                 options.Authentication.CookieLifetime = TimeSpan.FromDays(30);
                 options.Authentication.CookieSlidingExpiration = true;
             });
+            builder.AddInMemoryApiScopes(new[] { new ApiScope("testokurapi"), });
             builder.AddInMemoryApiResources(Configuration.GetSection("ApiResources"));
             builder.AddInMemoryClients(Configuration.GetSection("Clients"));
             builder.AddSigningCredential(new X509Certificate2(Path.Combine("cert", "testokur.pfx"), AppConfiguration.CertificatePassword));

@@ -1,5 +1,6 @@
 ﻿namespace TestOkur.Identity.Controllers
 {
+    using IdentityServer4;
     using IdentityServer4.Events;
     using IdentityServer4.Extensions;
     using IdentityServer4.Services;
@@ -91,12 +92,12 @@
                         IsPersistent = model.RememberLogin,
                         ExpiresUtc = DateTimeOffset.UtcNow.Add(TimeSpan.FromDays(30)),
                     };
-
                     await HttpContext.SignInAsync(
-                        loggedInUser.Id,
-                        loggedInUser.UserName,
-                        props,
-                        new Claim(JwtClaimTypes.Subject, loggedInUser.Id));
+                        new IdentityServerUser(loggedInUser.Id)
+                    {
+                        DisplayName = loggedInUser.UserName,
+                    }, props);
+
                     await _events.RaiseAsync(
                         new UserLoginSuccessEvent(
                             loggedInUser.UserName,

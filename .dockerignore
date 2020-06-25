@@ -16,6 +16,4 @@ coverage.json
 coverage-hits.txt
 Jenkinsfile
 README.md
-deploy.sh
-deploy-prod.sh
 test-results/

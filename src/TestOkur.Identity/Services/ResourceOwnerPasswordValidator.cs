@@ -26,11 +26,10 @@
         public ResourceOwnerPasswordValidator(
             UserManager<ApplicationUser> userManager,
             SignInManager<ApplicationUser> signInManager,
-            IEventService events,
             ILogger<ResourceOwnerPasswordValidator<ApplicationUser>> logger,
             ApplicationDbContextFactory applicationDbContextFactory,
             AppConfiguration appConfiguration)
-        : base(userManager, signInManager, events, logger)
+        : base(userManager, signInManager, logger)
         {
             _userManager = userManager;
             _applicationDbContextFactory = applicationDbContextFactory;
