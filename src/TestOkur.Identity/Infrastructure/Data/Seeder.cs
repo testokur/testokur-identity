@@ -9,7 +9,7 @@
     using System.Threading;
     using System.Threading.Tasks;
     using TestOkur.Identity.Configuration;
-
+    
     public static class Seeder
     {
         public static async Task SeedAsync(IServiceProvider serviceProvider)
@@ -77,7 +77,7 @@
 
                 if (!result.Succeeded)
                 {
-                    throw new Exception(result.Errors.First().Description);
+                    throw new InvalidOperationException(result.Errors.First().Description);
                 }
 
                 var claims = new[]
@@ -93,7 +93,7 @@
 
                 if (!result.Succeeded)
                 {
-                    throw new Exception(result.Errors.First().Description);
+                    throw new InvalidOperationException(result.Errors.First().Description);
                 }
             }
         }
