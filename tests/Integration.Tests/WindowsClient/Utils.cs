@@ -80,7 +80,7 @@
                     Scope = Scope,
                     UserName = email,
                     Password = password,
-                    Parameters = extra,
+                    Parameters = new Parameters(extra),
                 });
         }
 
