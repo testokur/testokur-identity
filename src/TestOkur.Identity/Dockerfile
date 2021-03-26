@@ -1,19 +1,13 @@
 ARG COMMIT=""
 
-FROM mcr.microsoft.com/dotnet/core/aspnet:3.1 as base
+FROM mcr.microsoft.com/dotnet/aspnet:5.0 as base
 LABEL "Maintainer"="Nazmi Altun <nazmialtun@windowslive.com>"
 LABEL Commit=${COMMIT}
 
-FROM mcr.microsoft.com/dotnet/core/sdk:3.1 as build
+FROM mcr.microsoft.com/dotnet/sdk:5.0 as build
 WORKDIR /src
 COPY . .
 RUN dotnet build "./src/TestOkur.Identity/TestOkur.Identity.csproj" -c Release -o /app
-RUN dotnet tool install --global dotnet-trace
-RUN dotnet tool install --global dotnet-dump
-RUN dotnet tool install --global dotnet-counters
-RUN dotnet tool install --global dotnet-sos
-RUN dotnet tool install --global dotnet-gcdump
-ENV PATH="/root/.dotnet/tools:${PATH}"
 
 FROM node:current-alpine AS ui-build
 ENV NODE_ENV production
@@ -37,8 +31,6 @@ FROM base as final
 WORKDIR /app
 EXPOSE 80
 COPY --from=publish /app .
-COPY --from=build /root/.dotnet/tools/ /opt/bin
-ENV PATH="/opt/bin:${PATH}"
 ARG COMMIT
 ENV COMMIT_SHA=${COMMIT}
 ENTRYPOINT ["dotnet", "TestOkur.Identity.dll"]
