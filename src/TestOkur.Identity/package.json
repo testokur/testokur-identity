@@ -21,7 +21,7 @@
 		"extract-text-webpack-plugin": "^4.0.0-beta.0",
 		"file-loader": "^1.1.11",
 		"jquery": "^3.4.0",
-		"jquery-validation": "^1.17.0",
+		"jquery-validation": "^1.19.5",
 		"material-design-icons": "^3.0.1",
 		"node-waves": "^0.7.6",
 		"style-loader": "^0.20.3",
